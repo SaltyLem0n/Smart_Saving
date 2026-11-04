@@ -1,4 +1,15 @@
-streamlit
-pandas
+# Versions verified with Python 3.12, both saved models, and both prediction flows.
+streamlit==1.66.1
+pandas==3.1.0
+numpy==2.5.4
+scipy==1.18.1
 scikit-learn==1.6.1
-joblib
+joblib==1.6.0
+
+# Match the PyArrow version selected by Community Cloud's compatibility fallback.
+pyarrow==24.0.0
+
+# Keep the tested HTTP/WebSocket server stack consistent across rebuilds.
+starlette==1.10.0
+uvicorn==0.54.0
+websockets==17.4
