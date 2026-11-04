@@ -52,6 +52,16 @@ These local checks do not establish that the cloud deployment is healthy. If the
 
 Startup messages prefixed with `[Smart Savings]` show when the app script starts, finishes importing dependencies, loads its models, and loads the CSV. An unchanging loading page with no script-start message suggests the problem happens before script execution. A message followed by a traceback or no later checkpoint helps identify the startup stage to investigate.
 
+## GitHub Pages
+
+`index.html` runs the app entirely in the browser using Stlite 0.85.1 and Pyodide 0.27.7 (Python 3.12). Its browser dependencies are configured in `index.html`, independently of the server's `requirements.txt`.
+
+The browser launcher pins scikit-learn to **1.6.1**, matching the saved models, together with the NumPy, SciPy, and pandas versions available in that Pyodide distribution. Upgrading the browser runtime without checking model compatibility can cause `joblib.load()` to fail with an error such as `AttributeError: ... _RemainderColsList`.
+
+To preview locally, run `py -3.12 -m http.server 8765 --bind 127.0.0.1` from the project folder and open `http://127.0.0.1:8765/`. The first visit downloads the Python runtime and packages from CDNs, so it needs an internet connection and can take longer to load.
+
+Browser smoke checks on 2026-11-04 loaded both models, rendered the dropdowns, and exercised both prediction buttons. Default inputs produced a fixed-deposit probability displayed as 37% and saver group 0 (Balanced middle), matching the local Python results. The saver table and customer chart also rendered. These checks used the local static preview; the deployed GitHub Pages site still needs checking after publishing the changes.
+
 ## Dataset references
 
 The application credits these Kaggle datasets:
