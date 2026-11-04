@@ -46,7 +46,7 @@ The saved models are included, so no training step is needed to start the applic
 
 Deploy `SaltyLem0n/Smart_Saving`, branch `main`, with `app.py` as the entrypoint and Python **3.12** in Advanced settings.
 
-The dependency versions are pinned to the stack verified locally on Windows with Python 3.12. The checks covered initial rendering, both prediction buttons, and a browser connection to the running server. PyArrow is pinned to 24.0.0 to match the compatibility fallback seen in the cloud deployment log.
+The dependency versions are pinned to the stack verified locally on Windows with Python 3.12. The checks covered initial rendering, both prediction buttons, and a browser connection to the running server. PyArrow is pinned to 24.0.0 to match the compatibility fallback seen in the cloud deployment log. Streamlit 1.56.0 uses the Tornado server and is pinned as a cloud startup compatibility check after the 1.66.1 Uvicorn-based deployment remained on its loading page despite passing local checks.
 
 These local checks do not establish that the cloud deployment is healthy. If the cloud page stays on its loading spinner after the server starts, inspect the current Cloud logs and hosting status before changing the models or retraining them.
 
