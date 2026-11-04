@@ -1,6 +1,5 @@
 # Versions verified with Python 3.12, both saved models, and both prediction flows.
-# Use the Tornado-based server while checking Community Cloud startup compatibility.
-streamlit==1.56.0
+streamlit==1.66.1
 pandas==3.1.0
 numpy==2.5.4
 scipy==1.18.1
@@ -10,5 +9,7 @@ joblib==1.6.0
 # Match the PyArrow version selected by Community Cloud's compatibility fallback.
 pyarrow==24.0.0
 
-# Web server used by Streamlit 1.56.
-tornado==6.6
+# Keep the tested HTTP/WebSocket server stack consistent across rebuilds.
+starlette==1.10.0
+uvicorn==0.54.0
+websockets==17.4

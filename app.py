@@ -9,9 +9,13 @@ Tab 3  About         -> how the models were built
 Data: Kaggle "Bank Marketing" and "Mall Customer Segmentation Data".
 Run:  streamlit run app.py
 """
+print("[Smart Savings] App script started.", flush=True)
+
 import joblib
 import pandas as pd
 import streamlit as st
+
+print("[Smart Savings] Dependencies imported.", flush=True)
 
 # ---------- STEP 1: page title ----------
 st.set_page_config(page_title="Smart Savings", page_icon="💰", layout="wide")
@@ -25,12 +29,15 @@ def load_models():
     # TODO 1: load "savings_model.joblib" and "saver_model.joblib" with joblib.load
     savings = joblib.load("savings_model.joblib")
     saver = joblib.load("saver_model.joblib")
+    print("[Smart Savings] Both models loaded.", flush=True)
     return savings, saver
 
 
 @st.cache_data
 def load_customers():
-    return pd.read_csv("customers_with_groups.csv")
+    customers = pd.read_csv("customers_with_groups.csv")
+    print(f"[Smart Savings] Loaded {len(customers)} customer rows.", flush=True)
+    return customers
 
 
 savings, saver = load_models()
